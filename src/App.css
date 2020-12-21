@@ -1,0 +1,18 @@
+.App {
+  box-sizing: border-box;
+  padding-top: 40px;
+}
+
+.jumbotron {
+  min-width: 260px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.btn-group {
+  width: 100%;
+}
+
+.half-size {
+  width: 50%;
+}
