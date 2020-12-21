@@ -1,0 +1,13 @@
+.scoreboard {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.1;
+  color: #333;
+}
+
+.alarm {
+  color: #c82333;
+}

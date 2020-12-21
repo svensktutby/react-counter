@@ -16,6 +16,7 @@ export const Button: FC<ButtonPropsType> = ({
   ...restProps
 }) => {
   const buttonClassName = `btn ${className ? className : 'btn-primary'}`;
+
   return (
     <button
       onClick={clickHandler}

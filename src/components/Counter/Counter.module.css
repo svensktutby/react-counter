@@ -1,10 +1,11 @@
 .counter {
-  color: #333;
-  font-weight: 700;
-  font-size: 5rem;
-  line-height: 1.1;
+  composes: jumbotron from "../../App.css";
 }
 
-.alarm {
-  color: #c82333;
+.btnGroup {
+  width: 100%;
+}
+
+.halfSize {
+  width: 50%;
 }
