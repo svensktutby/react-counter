@@ -1,3 +1,3 @@
-import { Scoreboard } from './Scoreboard';
+import { Scoreboard } from './Scoreboard'
 
-export { Scoreboard };
+export { Scoreboard }

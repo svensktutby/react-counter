@@ -4,6 +4,7 @@ import React, {
   FC,
   ChangeEvent,
   KeyboardEvent,
+  memo,
 } from 'react'
 
 import s from './Input.module.css'
@@ -20,7 +21,7 @@ type InputPropsType = DefaultInputPropsType & {
   title?: string
 }
 
-export const Input: FC<InputPropsType> = ({
+const Input: FC<InputPropsType> = ({
   className,
   onChange,
   onKeyPress,
@@ -60,3 +61,5 @@ export const Input: FC<InputPropsType> = ({
     </div>
   )
 }
+
+export const InputWithMemo = memo(Input)

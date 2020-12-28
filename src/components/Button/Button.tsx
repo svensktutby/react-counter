@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC, memo } from 'react'
 
 type DefaultButtonPropsType = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -7,12 +7,16 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 
 type ButtonPropsType = DefaultButtonPropsType & {}
 
-export const Button: FC<ButtonPropsType> = ({
-  className,
+export const Button: FC<ButtonPropsType> = memo(
+  ({
+    className,
 
-  ...restProps
-}) => {
-  const buttonClassName = `btn ${className ? className : 'btn-primary'}`
+    ...restProps
+  }) => {
+    const buttonClassName = `btn ${className ? className : 'btn-primary'}`
 
-  return <button type="button" className={buttonClassName} {...restProps} />
-}
+    return <button type="button" className={buttonClassName} {...restProps} />
+  },
+)
+
+export const ButtonWithMemo = memo(Button)

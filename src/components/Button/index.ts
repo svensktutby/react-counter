@@ -1,3 +1,3 @@
-import { Button } from "./Button";
+import { ButtonWithMemo } from './Button'
 
-export { Button };
+export { ButtonWithMemo }

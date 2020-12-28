@@ -1,3 +1,3 @@
-import { Input } from './Input'
+import { InputWithMemo } from './Input'
 
-export { Input }
+export { InputWithMemo }
