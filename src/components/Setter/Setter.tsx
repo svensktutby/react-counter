@@ -1,14 +1,14 @@
 import React, { FC, memo, useEffect } from 'react'
-import { InputWithMemo } from '../Input'
-import { ButtonWithMemo } from '../Button/'
-import { StateType } from '../../bus/reducer'
 import s from './Setter.module.css'
+import { Input } from '../Input'
+import { Button } from '../Button'
 import {
   setCounterAC,
   setErrorAC,
   setMaxCounterAC,
   setMinCounterAC,
 } from '../../bus/action'
+import { StateType } from '../../bus/reducer'
 import { ActionTypes } from '../../bus/types'
 
 type SetterPropsType = {
@@ -48,14 +48,14 @@ export const Setter: FC<SetterPropsType> = memo(
     return (
       <div className={setterClassName}>
         <div className="mb-auto">
-          <InputWithMemo
+          <Input
             type="number"
             title="max value:"
             onChangeText={setMaxCounter}
             value={maxCounter}
             error={error}
           />
-          <InputWithMemo
+          <Input
             type="number"
             title="start value:"
             onChangeText={setMinCounter}
@@ -65,15 +65,17 @@ export const Setter: FC<SetterPropsType> = memo(
         </div>
         <hr className="my-4 w-100" />
         <div className="btn-group btn-group-lg w-100">
-          <ButtonWithMemo
+          <Button
             className="btn-info w-50"
             disabled={!isSetterActive || error}
             onClick={setCounter}
           >
             Set
-          </ButtonWithMemo>
+          </Button>
         </div>
       </div>
     )
   },
 )
+
+Setter.displayName = 'Setter'

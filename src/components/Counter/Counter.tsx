@@ -1,10 +1,10 @@
 import React, { FC, memo } from 'react'
 import s from './Counter.module.css'
-import { ButtonWithMemo } from '../Button'
+import { Button } from '../Button'
 import { Scoreboard } from '../Scoreboard'
+import { activateSetterAC, incrementAC, resetAC } from '../../bus/action'
 import { StateType } from '../../bus/reducer'
 import { ActionTypes } from '../../bus/types'
-import { activateSetterAC, incrementAC, resetAC } from '../../bus/action'
 
 type CounterPropsType = {
   className?: string
@@ -45,25 +45,27 @@ export const Counter: FC<CounterPropsType> = memo(
         </div>
         <hr className="my-4 w-100" />
         <div className="btn-group btn-group-lg w-100">
-          <ButtonWithMemo
+          <Button
             className="btn-info w-50"
             disabled={counter >= maxCounter || isSetterActive}
             onClick={() => increaseCounter(1)}
           >
             Inc
-          </ButtonWithMemo>
-          <ButtonWithMemo
+          </Button>
+          <Button
             className="btn-info w-50"
             disabled={counter === minCounter || isSetterActive}
             onClick={() => resetCounter()}
           >
             Reset
-          </ButtonWithMemo>
-          <ButtonWithMemo className="btn-info w-50" onClick={showSetter}>
+          </Button>
+          <Button className="btn-info w-50" onClick={showSetter}>
             Set
-          </ButtonWithMemo>
+          </Button>
         </div>
       </div>
     )
   },
 )
+
+Counter.displayName = 'Counter'

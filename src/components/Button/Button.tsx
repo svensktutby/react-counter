@@ -19,4 +19,4 @@ export const Button: FC<ButtonPropsType> = memo(
   },
 )
 
-export const ButtonWithMemo = memo(Button)
+Button.displayName = 'Button'

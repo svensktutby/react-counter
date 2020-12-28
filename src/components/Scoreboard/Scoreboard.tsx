@@ -41,3 +41,5 @@ export const Scoreboard: FC<ScoreboardPropsType> = memo(
     )
   },
 )
+
+Scoreboard.displayName = 'Scoreboard'
