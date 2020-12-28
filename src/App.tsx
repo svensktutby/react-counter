@@ -1,10 +1,8 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { Counter } from './components/Counter'
 import { initialState, reducer } from './bus/reducer'
 import './App.css'
 import { Setter } from './components/Setter'
-
-// type LocalStoreType = string | null
 
 function App() {
   const localState = localStorage.getItem('counter')
@@ -13,6 +11,10 @@ function App() {
   const [state, dispatch] = useReducer(reducer, preloadedState)
 
   const { isSetterActive } = state
+
+  useEffect(() => {
+    localStorage.setItem('counter', JSON.stringify(state))
+  }, [state])
 
   const colClassName = 'col col-sm col-md-6 ml-3 mr-3 d-flex flex-column'
 

@@ -21,10 +21,6 @@ export const Setter: FC<SetterPropsType> = ({ className, state, dispatch }) => {
   const { isSetterActive, error, minCounter, maxCounter } = state
 
   useEffect(() => {
-    localStorage.setItem('counter', JSON.stringify(state))
-  }, [state])
-
-  useEffect(() => {
     if (minCounter < 0 || minCounter >= maxCounter) {
       dispatch(setErrorAC(true))
     } else {
