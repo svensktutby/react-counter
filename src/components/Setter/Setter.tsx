@@ -18,7 +18,7 @@ type SetterPropsType = {
 }
 
 export const Setter: FC<SetterPropsType> = ({ className, state, dispatch }) => {
-  const { setterActive, error, minCounter, maxCounter } = state
+  const { isSetterActive, error, minCounter, maxCounter } = state
 
   useEffect(() => {
     localStorage.setItem('counter', JSON.stringify(state))
@@ -70,7 +70,7 @@ export const Setter: FC<SetterPropsType> = ({ className, state, dispatch }) => {
       <div className="btn-group btn-group-lg w-100">
         <Button
           className="btn-info w-50"
-          disabled={!setterActive || error}
+          disabled={!isSetterActive || error}
           onClick={setCounter}
         >
           Set

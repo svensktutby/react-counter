@@ -1,5 +1,6 @@
 import {
   ActionTypes,
+  ACTIVATE_SETTER,
   INCREMENT,
   RESET,
   SET_COUNTER,
@@ -30,4 +31,8 @@ export function setCounterAC(): ActionTypes {
 
 export function setErrorAC(error: boolean): ActionTypes {
   return { type: SET_ERROR, error } as const
+}
+
+export function activateSetterAC(): ActionTypes {
+  return { type: ACTIVATE_SETTER } as const
 }

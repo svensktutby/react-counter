@@ -12,14 +12,27 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, preloadedState)
 
+  const { isSetterActive } = state
+
   const colClassName = 'col col-sm col-md-6 ml-3 mr-3 d-flex flex-column'
 
   return (
     <div className="App">
       <div className="container">
         <div className="row justify-content-center">
-          <Setter className={colClassName} state={state} dispatch={dispatch} />
-          <Counter className={colClassName} state={state} dispatch={dispatch} />
+          {isSetterActive ? (
+            <Setter
+              className={colClassName}
+              state={state}
+              dispatch={dispatch}
+            />
+          ) : (
+            <Counter
+              className={colClassName}
+              state={state}
+              dispatch={dispatch}
+            />
+          )}
         </div>
       </div>
     </div>

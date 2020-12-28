@@ -4,7 +4,7 @@ import s from './Scoreboard.module.css'
 type ScoreboardPropsType = {
   alarm: boolean
   error: boolean
-  activeCounter: boolean
+  isCounterActive: boolean
   className?: string
 }
 
@@ -12,7 +12,7 @@ export const Scoreboard: FC<ScoreboardPropsType> = ({
   className,
   alarm,
   error,
-  activeCounter,
+  isCounterActive,
   children,
 
   ...restProps
@@ -24,7 +24,7 @@ export const Scoreboard: FC<ScoreboardPropsType> = ({
   return (
     <div className="card">
       <div className="card-body text-center">
-        {!activeCounter ? (
+        {!isCounterActive ? (
           error ? (
             <div className={s.error}>Incorrect value!</div>
           ) : (

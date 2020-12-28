@@ -4,7 +4,7 @@ import { Button } from '../Button'
 import { StateType } from '../../bus/reducer'
 import s from './Counter.module.css'
 import { ActionTypes } from '../../bus/types'
-import { incrementAC, resetAC } from '../../bus/action'
+import { activateSetterAC, incrementAC, resetAC } from '../../bus/action'
 
 type CounterPropsType = {
   className?: string
@@ -17,7 +17,7 @@ export const Counter: FC<CounterPropsType> = ({
   state,
   dispatch,
 }) => {
-  const { setterActive, error, counter, minCounter, maxCounter } = state
+  const { isSetterActive, error, counter, minCounter, maxCounter } = state
 
   const increaseCounter = (payload: number) => {
     dispatch(incrementAC(payload))
@@ -25,6 +25,10 @@ export const Counter: FC<CounterPropsType> = ({
 
   const resetCounter = () => {
     dispatch(resetAC())
+  }
+
+  const showSetter = () => {
+    dispatch(activateSetterAC())
   }
 
   const counterClassName = `${s.counter} jumbotron p-4 ${
@@ -36,7 +40,7 @@ export const Counter: FC<CounterPropsType> = ({
       <div className="mb-auto">
         <Scoreboard
           alarm={counter >= maxCounter}
-          activeCounter={!setterActive}
+          isCounterActive={!isSetterActive}
           error={error}
         >
           {counter}
@@ -46,17 +50,20 @@ export const Counter: FC<CounterPropsType> = ({
       <div className="btn-group btn-group-lg w-100">
         <Button
           className="btn-info w-50"
-          disabled={counter >= maxCounter || setterActive}
+          disabled={counter >= maxCounter || isSetterActive}
           onClick={() => increaseCounter(1)}
         >
-          Increment
+          Inc
         </Button>
         <Button
           className="btn-info w-50"
-          disabled={counter === minCounter || setterActive}
+          disabled={counter === minCounter || isSetterActive}
           onClick={() => resetCounter()}
         >
           Reset
+        </Button>
+        <Button className="btn-info w-50" onClick={showSetter}>
+          Set
         </Button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import {
   ActionTypes,
+  ACTIVATE_SETTER,
   INCREMENT,
   RESET,
   SET_COUNTER,
@@ -9,7 +10,7 @@ import {
 } from './types'
 
 export const initialState = {
-  setterActive: false,
+  isSetterActive: false,
   error: false,
   counter: 0,
   minCounter: 0,
@@ -39,21 +40,22 @@ export const reducer = (
       return {
         ...state,
         minCounter: +action.payload,
-        setterActive: true,
       }
 
     case SET_MAX_COUNTER:
       return {
         ...state,
         maxCounter: +action.payload,
-        setterActive: true,
       }
 
     case SET_COUNTER:
-      return { ...state, counter: state.minCounter, setterActive: false }
+      return { ...state, counter: state.minCounter, isSetterActive: false }
 
     case SET_ERROR:
       return { ...state, error: action.error }
+
+    case ACTIVATE_SETTER:
+      return { ...state, isSetterActive: true }
 
     default:
       return state

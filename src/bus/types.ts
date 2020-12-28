@@ -32,6 +32,11 @@ type SetErrorAction = {
   error: boolean
 }
 
+export const ACTIVATE_SETTER = 'ACTIVATE_SETTER'
+type ActivateSetterAction = {
+  type: typeof ACTIVATE_SETTER
+}
+
 export type ActionTypes =
   | IncrementAction
   | ResetAction
@@ -39,3 +44,4 @@ export type ActionTypes =
   | SetMaxCounterAction
   | SetCounterAction
   | SetErrorAction
+  | ActivateSetterAction
