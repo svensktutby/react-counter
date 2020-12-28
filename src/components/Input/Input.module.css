@@ -1,0 +1,10 @@
+.error {
+  background-color: rgba(200, 35, 51, 0.3);
+  border-color: #c82333;
+}
+
+.error:focus {
+  background-color: rgba(200, 35, 51, 0.3);
+  border-color: #c82333;
+  box-shadow: 0 0 0 0.2rem rgba(200, 35, 51, 0.5);
+}
