@@ -1,12 +1,12 @@
-import React, { FC, memo } from 'react'
-import s from './Scoreboard.module.css'
+import React, { FC, memo } from 'react';
+import s from './Scoreboard.module.css';
 
 type ScoreboardPropsType = {
-  alarm: boolean
-  error: boolean
-  isCounterActive: boolean
-  className?: string
-}
+  alarm: boolean;
+  error: boolean;
+  isCounterActive: boolean;
+  className?: string;
+};
 
 export const Scoreboard: FC<ScoreboardPropsType> = memo(
   ({
@@ -20,7 +20,7 @@ export const Scoreboard: FC<ScoreboardPropsType> = memo(
   }) => {
     const scoreboardClassName = `${s.scoreboard} ${alarm ? s.alarm : ''} ${
       className ? className : ''
-    }`
+    }`;
 
     return (
       <div className="card">
@@ -38,8 +38,8 @@ export const Scoreboard: FC<ScoreboardPropsType> = memo(
           )}
         </div>
       </div>
-    )
+    );
   },
-)
+);
 
-Scoreboard.displayName = 'Scoreboard'
+Scoreboard.displayName = 'Scoreboard';

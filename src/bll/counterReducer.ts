@@ -49,9 +49,6 @@ export const counterReducer = (
     case ActionType.ACTIVATE_SETTER:
       return { ...state, isSetterActive: true };
 
-    case ActionType.SET_STATE:
-      return { ...state, ...action.payload };
-
     default:
       return state;
   }

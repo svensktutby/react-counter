@@ -1,5 +1,4 @@
 import { ActionType } from './types';
-import { StateType } from './counterReducer';
 
 // Sync
 export function increment(value: number) {
@@ -30,11 +29,6 @@ export function activateSetter() {
   return { type: ActionType.ACTIVATE_SETTER } as const;
 }
 
-// Async
-export function setState(state: StateType) {
-  return { type: ActionType.SET_STATE, payload: state } as const;
-}
-
 export type CounterActionsType =
   | ReturnType<typeof increment>
   | ReturnType<typeof reset>
@@ -42,5 +36,4 @@ export type CounterActionsType =
   | ReturnType<typeof setMaxCounter>
   | ReturnType<typeof setCounter>
   | ReturnType<typeof setError>
-  | ReturnType<typeof activateSetter>
-  | ReturnType<typeof setState>;
+  | ReturnType<typeof activateSetter>;
