@@ -1,28 +1,32 @@
-import React, { useEffect, useReducer } from 'react'
-import { Counter } from './components/Counter'
-import { initialState, reducer } from './bus/reducer'
-import './App.css'
-import { Setter } from './components/Setter'
+import React, { useEffect, useReducer } from 'react';
+
+import './App.css';
+import { Counter } from './components/Counter';
+import { counterReducer, initialState } from './bll/counterReducer';
+import * as actions from './bll/actions';
+import { Setter } from './components/Setter';
 
 function App() {
-  const localState = localStorage.getItem('counter')
-  const preloadedState = (localState && JSON.parse(localState)) || initialState
-
-  const [state, dispatch] = useReducer(reducer, preloadedState)
-
-  const { isSetterActive } = state
+  const [state, dispatch] = useReducer(counterReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem('counter', JSON.stringify(state))
-  }, [state])
+    const localState = localStorage.getItem('counter');
+    const preloadedState =
+      (localState && JSON.parse(localState)) || initialState;
+    dispatch(actions.setState(preloadedState));
+  }, []);
 
-  const colClassName = 'col col-sm col-md-6 ml-3 mr-3 d-flex flex-column'
+  useEffect(() => {
+    localStorage.setItem('counter', JSON.stringify(state));
+  }, [state]);
+
+  const colClassName = 'col col-sm col-md-6 ml-3 mr-3 d-flex flex-column';
 
   return (
     <div className="App">
       <div className="container">
         <div className="row justify-content-center">
-          {isSetterActive ? (
+          {state.isSetterActive ? (
             <Setter
               className={colClassName}
               state={state}
@@ -38,7 +42,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

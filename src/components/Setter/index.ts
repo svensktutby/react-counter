@@ -1,3 +1,1 @@
-import { Setter } from './Setter';
-
-export { Setter };
+export * from './Setter';

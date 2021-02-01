@@ -1,36 +1,36 @@
-import React, { FC, memo } from 'react'
-import s from './Counter.module.css'
-import { Button } from '../Button'
-import { Scoreboard } from '../Scoreboard'
-import { activateSetterAC, incrementAC, resetAC } from '../../bus/action'
-import { StateType } from '../../bus/reducer'
-import { ActionTypes } from '../../bus/types'
+import React, { FC, memo } from 'react';
+
+import s from './Counter.module.css';
+import { Button } from '../common/Button';
+import { Scoreboard } from '../Scoreboard';
+import * as actions from '../../bll/actions';
+import { StateType } from '../../bll/counterReducer';
 
 type CounterPropsType = {
-  className?: string
-  state: StateType
-  dispatch: (props: ActionTypes) => void
-}
+  className?: string;
+  state: StateType;
+  dispatch: (props: actions.CounterActionsType) => void;
+};
 
 export const Counter: FC<CounterPropsType> = memo(
   ({ className, state, dispatch }) => {
-    const { isSetterActive, error, counter, minCounter, maxCounter } = state
+    const { isSetterActive, error, counter, minCounter, maxCounter } = state;
 
-    const increaseCounter = (payload: number) => {
-      dispatch(incrementAC(payload))
-    }
+    const increaseCounter = (value: number) => {
+      dispatch(actions.increment(value));
+    };
 
     const resetCounter = () => {
-      dispatch(resetAC())
-    }
+      dispatch(actions.reset());
+    };
 
     const showSetter = () => {
-      dispatch(activateSetterAC())
-    }
+      dispatch(actions.activateSetter());
+    };
 
     const counterClassName = `${s.counter} jumbotron p-4 ${
       className ? className : ''
-    }`
+    }`;
 
     return (
       <div className={counterClassName}>
@@ -64,8 +64,8 @@ export const Counter: FC<CounterPropsType> = memo(
           </Button>
         </div>
       </div>
-    )
+    );
   },
-)
+);
 
-Counter.displayName = 'Counter'
+Counter.displayName = 'Counter';
