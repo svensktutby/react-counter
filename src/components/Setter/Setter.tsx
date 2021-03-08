@@ -1,45 +1,35 @@
-import React, { FC, memo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import s from './Setter.module.css';
 import { Input } from '../common/Input';
 import { Button } from '../common/Button';
-import * as actions from '../../bll/actions';
-import { useCounterSelectors } from '../../bll/selectors';
+import { CounterType } from '../../store/counterStore';
 
 type SetterPropsType = {
   className?: string;
+  state: CounterType;
 };
 
-export const Setter: FC<SetterPropsType> = memo(({ className }) => {
+export const Setter: FC<SetterPropsType> = observer(({ className, state }) => {
   const {
     isSetterActive,
     error,
     minCounter,
     maxCounter,
-  } = useCounterSelectors();
-
-  const dispatch = useDispatch();
+    setError,
+    setMinCounter,
+    setMaxCounter,
+    setCounter,
+  } = state;
 
   useEffect(() => {
     if (minCounter < 0 || minCounter >= maxCounter) {
-      dispatch(actions.setError(true));
+      setError(true);
     } else {
-      dispatch(actions.setError(false));
+      setError(false);
     }
-  }, [minCounter, maxCounter, dispatch]);
-
-  const setMinCounter = (value: string) => {
-    dispatch(actions.setMinCounter(value));
-  };
-
-  const setMaxCounter = (value: string) => {
-    dispatch(actions.setMaxCounter(value));
-  };
-
-  const setCounter = () => {
-    dispatch(actions.setCounter());
-  };
+  }, [minCounter, maxCounter, setError]);
 
   const setterClassName = `${s.setter} jumbotron p-4 ${
     className ? className : ''
