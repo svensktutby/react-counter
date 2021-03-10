@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
 export interface ICounterStore {
   isSetterActive: boolean;
@@ -9,66 +9,66 @@ export interface ICounterStore {
 }
 
 class CounterStore implements ICounterStore {
-  @observable isSetterActive = false;
-  @observable error = false;
-  @observable count = 0;
-  @observable minCounter = 0;
-  @observable maxCounter = 5;
+  isSetterActive = false;
+  error = false;
+  count = 0;
+  minCounter = 0;
+  maxCounter = 5;
 
   constructor() {
-    makeObservable(this);
+    makeAutoObservable(this);
   }
 
-  @action increment = (value: number) => {
+  increment = (value: number) => {
     if (this.count < this.maxCounter) {
       this.count += value;
       if (this.count > this.maxCounter) this.count = this.maxCounter;
     }
   };
 
-  @action reset = () => {
+  reset = () => {
     this.count = this.minCounter;
   };
 
-  @action setMinCounter = (value: string) => {
+  setMinCounter = (value: string) => {
     this.minCounter = +value;
   };
 
-  @action setMaxCounter = (value: string) => {
+  setMaxCounter = (value: string) => {
     this.maxCounter = +value;
   };
 
-  @action setCounter = () => {
+  setCounter = () => {
     this.count = this.minCounter;
     this.isSetterActive = false;
     this.writeStorage();
   };
 
-  @action setError = (error: boolean) => {
+  setError = (error: boolean) => {
     this.error = error;
   };
 
-  @action activateSetter = () => {
+  activateSetter = () => {
     this.isSetterActive = true;
   };
 
-  @action loadStorage = async () => {
+  loadStorage = async () => {
     const localState = await localStorage.getItem('counter');
     const counter: ICounterStore = localState && JSON.parse(localState);
 
-    console.log(counter);
-
     if (counter) {
-      for (const key in counter) {
-        if (counter.hasOwnProperty(key)) {
-          // @ts-ignore
-          this[key] = counter[key as keyof typeof counter];
+      runInAction(() => {
+        for (const key in counter) {
+          if (counter.hasOwnProperty(key)) {
+            // @ts-ignore
+            this[key] = counter[key as keyof typeof counter];
+          }
         }
-      }
+      });
     }
   };
 
-  @action writeStorage = async () => {
+  writeStorage = async () => {
     const counter: ICounterStore = {
       isSetterActive: this.isSetterActive,
       error: this.error,
